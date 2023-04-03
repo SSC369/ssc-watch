@@ -89,6 +89,10 @@ class Home extends Component {
     }
   }
 
+  onSearchVideo = event => {
+    this.setState({searchInput: event.target.value}, this.getHomeData)
+  }
+
   render() {
     const {displayPremium, videosData} = this.state
     return (
@@ -158,13 +162,16 @@ class Home extends Component {
                   )}
 
                   <VideosResponsiveContainer>
-                    <SearchInputContainer darkTheme={darkTheme}>
+                    <SearchInputContainer
+                      onSubmit={this.onSearchVideo}
+                      darkTheme={darkTheme}
+                    >
                       <HomeInputElement
                         placeholder="Search"
                         darkTheme={darkTheme}
                         type="text"
                       />
-                      <SearchButton darkTheme={darkTheme} type="button">
+                      <SearchButton darkTheme={darkTheme} type="submit">
                         <AiOutlineSearch
                           fontSize={20}
                           color={darkTheme ? '#f9f9f9' : '#181818'}

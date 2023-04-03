@@ -6,7 +6,6 @@ export const HomeResponsiveContainer = styled.div`
 `
 export const HomeDetailsContainer = styled.div`
   background-color: ${props => (props.darkTheme ? '#181818' : '#f9f9f9')};
-  height: 100vh;
   flex-grow: 1;
   max-width: 1000px;
   display: flex;
@@ -53,13 +52,16 @@ export const HomeNavbar = styled.nav`
   flex-direction: column;
   width: 300px;
   flex-shrink: 0;
-  height: 100vh;
+
+  @media screen and (max-width: 767px) {
+    display: none;
+  }
 `
-export const SearchInputContainer = styled.div`
+export const SearchInputContainer = styled.form`
   margin-top: 20px;
   display: flex;
   align-items: center;
-  width: 80%;
+  width: 90%;
   max-width: 600px;
 `
 export const HomeInputElement = styled.input`
@@ -70,7 +72,7 @@ export const HomeInputElement = styled.input`
   outline: none;
   background-color: transparent;
   width: 90%;
-  border: 2px solid ${props => (props.darkTheme ? '#212121' : '#94a3b8')};
+  border: 2px solid ${props => (props.darkTheme ? '#212121' : '#d7dfe9')};
   height: 36px;
 `
 export const SearchButton = styled.button`
@@ -82,7 +84,7 @@ export const SearchButton = styled.button`
   justify-content: center;
   width: 10%;
   background-color: ${props => (props.darkTheme ? '#231f20' : '#f1f1f1')};
-  border: 2px solid ${props => (props.darkTheme ? '#212121' : '#94a3b8')};
+  border: 2px solid ${props => (props.darkTheme ? '#212121' : '#d7dfe9')};
   border-left: 1px;
 `
 export const VideosResponsiveContainer = styled.div`

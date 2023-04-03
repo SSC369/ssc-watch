@@ -4,9 +4,10 @@ export const Navbar = styled.nav`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 30px 60px 30px 60px;
+  padding: 20px 40px 20px 40px;
   background-color: ${props => (props.darkTheme ? '#212121' : '#ffffff')};
   @media screen and (min-width: 768px) {
+    padding: 30px 60px 30px 60px;
     max-width: 1300px;
     margin: auto;
   }
@@ -21,7 +22,7 @@ export const NavbarOptionsContainer = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  width: 160px;
+  width: 140px;
   @media screen and (min-width: 768px) {
     display: none;
   }
@@ -48,7 +49,7 @@ export const ModalNavbarOption = styled.li`
   align-items: center;
   width:100%;
   margin-bottom:10px;
-  border-radius:10px;
+ 
   font-weight: 500;
   :hover{
       background-color: ${props => (props.darkTheme ? '#424242' : '#f1f5f9')} ;
