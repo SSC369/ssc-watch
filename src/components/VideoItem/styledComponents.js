@@ -3,10 +3,9 @@ import styled from 'styled-components'
 export const Video = styled.li`
   display: flex;
   flex-direction: column;
-  width: 30%;
   margin-right: 10px;
   padding: 20px;
-  flex-grow: 1;
+
   @media screen and (max-width: 575px) {
     width: 100%;
   }
@@ -31,6 +30,10 @@ export const VideoChannelImage = styled.img`
   width: 30px;
   height: 30px;
   margin-right: 10px;
+  @media screen and (max-width: 575px) {
+    width: 20px;
+    height: 20px;
+  }
 `
 export const VideoDetailsContainer = styled.div`
   margin-left: 10px;

@@ -1,4 +1,5 @@
-import {withRouter} from 'react-router-dom'
+import {withRouter, Link} from 'react-router-dom'
+
 import Popup from 'reactjs-popup'
 import Cookie from 'js-cookie'
 import {FaMoon} from 'react-icons/fa'
@@ -128,36 +129,44 @@ const Header = props => (
                     />
                   </CloseButton>
                   <ModalOptionsContainer>
-                    <ModalNavbarOption darkTheme={darkTheme}>
-                      <AiFillHome
-                        fontSize={30}
-                        color={darkTheme ? '#f9f9f9' : '#181818'}
-                      />
-                      <OptionText darkTheme={darkTheme}>Home</OptionText>
-                    </ModalNavbarOption>
-                    <ModalNavbarOption darkTheme={darkTheme}>
-                      <HiFire
-                        color={darkTheme ? '#f9f9f9' : '#181818'}
-                        fontSize={30}
-                      />
-                      <OptionText darkTheme={darkTheme}>Trending</OptionText>
-                    </ModalNavbarOption>
-                    <ModalNavbarOption darkTheme={darkTheme}>
-                      <SiYoutubegaming
-                        color={darkTheme ? '#f9f9f9' : '#181818'}
-                        fontSize={30}
-                      />
-                      <OptionText darkTheme={darkTheme}>Gaming</OptionText>
-                    </ModalNavbarOption>
-                    <ModalNavbarOption darkTheme={darkTheme}>
-                      <MdPlaylistAdd
-                        color={darkTheme ? '#f9f9f9' : '#181818'}
-                        fontSize={30}
-                      />
-                      <OptionText darkTheme={darkTheme}>
-                        Saved Videos
-                      </OptionText>
-                    </ModalNavbarOption>
+                    <Link to="/" className="nav-link">
+                      <ModalNavbarOption darkTheme={darkTheme}>
+                        <AiFillHome
+                          fontSize={30}
+                          color={darkTheme ? '#f9f9f9' : '#181818'}
+                        />
+                        <OptionText darkTheme={darkTheme}>Home</OptionText>
+                      </ModalNavbarOption>
+                    </Link>
+                    <Link to="/trending" className="nav-link">
+                      <ModalNavbarOption darkTheme={darkTheme}>
+                        <HiFire
+                          color={darkTheme ? '#f9f9f9' : '#181818'}
+                          fontSize={30}
+                        />
+                        <OptionText darkTheme={darkTheme}>Trending</OptionText>
+                      </ModalNavbarOption>
+                    </Link>
+                    <Link to="/gaming" className="nav-link">
+                      <ModalNavbarOption darkTheme={darkTheme}>
+                        <SiYoutubegaming
+                          color={darkTheme ? '#f9f9f9' : '#181818'}
+                          fontSize={30}
+                        />
+                        <OptionText darkTheme={darkTheme}>Gaming</OptionText>
+                      </ModalNavbarOption>
+                    </Link>
+                    <Link to="/saved-videos" className="nav-link">
+                      <ModalNavbarOption darkTheme={darkTheme}>
+                        <MdPlaylistAdd
+                          color={darkTheme ? '#f9f9f9' : '#181818'}
+                          fontSize={30}
+                        />
+                        <OptionText darkTheme={darkTheme}>
+                          Saved Videos
+                        </OptionText>
+                      </ModalNavbarOption>
+                    </Link>
                   </ModalOptionsContainer>
                 </NavbarModalContainer>
               )}

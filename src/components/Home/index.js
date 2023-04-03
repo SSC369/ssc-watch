@@ -1,9 +1,8 @@
 import {Component} from 'react'
+
+import Loader from 'react-loader-spinner'
 import {RiCloseFill} from 'react-icons/ri'
-import {AiFillHome, AiOutlineSearch} from 'react-icons/ai'
-import {HiFire} from 'react-icons/hi'
-import {MdPlaylistAdd} from 'react-icons/md'
-import {SiYoutubegaming} from 'react-icons/si'
+import {AiOutlineSearch} from 'react-icons/ai'
 import Cookie from 'js-cookie'
 import Header from '../Header'
 import VideoItem from '../VideoItem'
@@ -16,20 +15,19 @@ import {
   GetItButton,
   PremiumCloseButton,
   PremiumContent,
-  HomeNavbar,
   SearchInputContainer,
   HomeInputElement,
   SearchButton,
   VideosResponsiveContainer,
   VideosListContainer,
+  LoadingContainer,
+  NoVideosDescription,
+  NoVideosImage,
+  NoVideosTitle,
+  RetryButton,
+  NoVideosViewContainer,
 } from './styledComponents'
-
-import {
-  ModalOptionsContainer,
-  ModalNavbarOption,
-  OptionText,
-} from '../Header/styledComponents'
-
+import NavbarMedium from '../NavbarMedium'
 import NxtWatchContext from '../../context/NxtWatchContext'
 
 const apiStatus = {
@@ -64,8 +62,7 @@ class Home extends Component {
     }
     const response = await fetch(url, options)
     const data = await response.json()
-    console.log(response)
-    console.log(data)
+
     if (response.ok) {
       const formattedData = data.videos.map(video => {
         const eachVideo = {
@@ -79,7 +76,7 @@ class Home extends Component {
         }
         return eachVideo
       })
-      console.log(formattedData)
+
       this.setState({
         videosData: formattedData,
         responseStatus: apiStatus.success,
@@ -90,11 +87,94 @@ class Home extends Component {
   }
 
   onSearchVideo = event => {
-    this.setState({searchInput: event.target.value}, this.getHomeData)
+    event.preventDefault()
+    this.getHomeData()
+  }
+
+  onChangeSearchInput = event => {
+    this.setState({searchInput: event.target.value})
+  }
+
+  renderNoVideosView = darkTheme => (
+    <NoVideosViewContainer>
+      <NoVideosImage
+        src="https://assets.ccbp.in/frontend/react-js/nxt-watch-no-search-results-img.png"
+        alt="no videos"
+      />
+      <NoVideosTitle darkTheme={darkTheme}>
+        No Search results found
+      </NoVideosTitle>
+      <NoVideosDescription darkTheme={darkTheme}>
+        Try different key words or remove the search filter
+      </NoVideosDescription>
+      <RetryButton type="button" onClick={() => this.getHomeData()}>
+        Retry
+      </RetryButton>
+    </NoVideosViewContainer>
+  )
+
+  renderSuccessView = darkTheme => {
+    const {videosData} = this.state
+    if (videosData.length === 0) {
+      return this.renderNoVideosView(darkTheme)
+    }
+    return (
+      <>
+        {videosData.map(eachVideo => (
+          <VideoItem key={eachVideo.id} video={eachVideo} />
+        ))}
+      </>
+    )
+  }
+
+  renderLoadingView = darkTheme => (
+    <LoadingContainer data-testid="loader">
+      <Loader
+        type="ThreeDots"
+        color={darkTheme ? '#ffffff' : '#181818'}
+        height="50"
+        width="50"
+      />
+    </LoadingContainer>
+  )
+
+  renderFailureView = darkTheme => (
+    <NoVideosViewContainer>
+      <NoVideosImage
+        src={
+          darkTheme
+            ? 'https://assets.ccbp.in/frontend/react-js/nxt-watch-failure-view-dark-theme-img.png'
+            : 'https://assets.ccbp.in/frontend/react-js/nxt-watch-failure-view-light-theme-img.png'
+        }
+      />
+      <NoVideosTitle darkTheme={darkTheme}>
+        Oops! Something Went Wrong
+      </NoVideosTitle>
+      <NoVideosDescription darkTheme={darkTheme}>
+        We are having some trouble to complete your request. Please try again.
+      </NoVideosDescription>
+      <RetryButton onClick={() => this.getHomeData()} type="button">
+        Retry
+      </RetryButton>
+    </NoVideosViewContainer>
+  )
+
+  renderVideosData = darkTheme => {
+    const {responseStatus} = this.state
+    switch (responseStatus) {
+      case apiStatus.success:
+        return this.renderSuccessView(darkTheme)
+      case apiStatus.loading:
+        return this.renderLoadingView(darkTheme)
+      case apiStatus.failure:
+        return this.renderFailureView(darkTheme)
+      default:
+        return null
+    }
   }
 
   render() {
-    const {displayPremium, videosData} = this.state
+    const {displayPremium, searchInput} = this.state
     return (
       <NxtWatchContext.Consumer>
         {value => {
@@ -103,40 +183,7 @@ class Home extends Component {
             <>
               <Header />
               <HomeResponsiveContainer>
-                <HomeNavbar darkTheme={darkTheme}>
-                  <ModalOptionsContainer>
-                    <ModalNavbarOption darkTheme={darkTheme}>
-                      <AiFillHome
-                        fontSize={30}
-                        color={darkTheme ? '#f9f9f9' : '#181818'}
-                      />
-                      <OptionText darkTheme={darkTheme}>Home</OptionText>
-                    </ModalNavbarOption>
-                    <ModalNavbarOption darkTheme={darkTheme}>
-                      <HiFire
-                        color={darkTheme ? '#f9f9f9' : '#181818'}
-                        fontSize={30}
-                      />
-                      <OptionText darkTheme={darkTheme}>Trending</OptionText>
-                    </ModalNavbarOption>
-                    <ModalNavbarOption darkTheme={darkTheme}>
-                      <SiYoutubegaming
-                        color={darkTheme ? '#f9f9f9' : '#181818'}
-                        fontSize={30}
-                      />
-                      <OptionText darkTheme={darkTheme}>Gaming</OptionText>
-                    </ModalNavbarOption>
-                    <ModalNavbarOption darkTheme={darkTheme}>
-                      <MdPlaylistAdd
-                        color={darkTheme ? '#f9f9f9' : '#181818'}
-                        fontSize={30}
-                      />
-                      <OptionText darkTheme={darkTheme}>
-                        Saved Videos
-                      </OptionText>
-                    </ModalNavbarOption>
-                  </ModalOptionsContainer>
-                </HomeNavbar>
+                <NavbarMedium darkTheme />
                 <HomeDetailsContainer darkTheme={darkTheme}>
                   {displayPremium && (
                     <PremiumMembershipContainer>
@@ -167,6 +214,8 @@ class Home extends Component {
                       darkTheme={darkTheme}
                     >
                       <HomeInputElement
+                        value={searchInput}
+                        onChange={this.onChangeSearchInput}
                         placeholder="Search"
                         darkTheme={darkTheme}
                         type="text"
@@ -180,9 +229,7 @@ class Home extends Component {
                     </SearchInputContainer>
 
                     <VideosListContainer>
-                      {videosData.map(eachVideo => (
-                        <VideoItem key={eachVideo.id} video={eachVideo} />
-                      ))}
+                      {this.renderVideosData(darkTheme)}
                     </VideosListContainer>
                   </VideosResponsiveContainer>
                 </HomeDetailsContainer>

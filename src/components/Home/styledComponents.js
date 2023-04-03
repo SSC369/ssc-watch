@@ -1,5 +1,45 @@
 import styled from 'styled-components'
 
+export const NoVideosViewContainer = styled.div`
+  padding-top: 60px;
+  padding-bottom: 60px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+`
+export const NoVideosImage = styled.img`
+  width: 50%;
+  max-width: 400px;
+`
+export const NoVideosTitle = styled.h1`
+  margin-bottom: 0;
+  color: ${props => (props.darkTheme ? '#f9f9f9' : '#181818')};
+`
+export const NoVideosDescription = styled.p`
+  margin-top: 20px;
+  margin-bottom: 20px;
+  font-size: 14px;
+  color: ${props => (props.darkTheme ? '#cccccc' : '#212121')};
+`
+export const RetryButton = styled.button`
+  border: none;
+  color: #f9f9f9;
+  font-weight: 500;
+  border-radius: 10px;
+  cursor: pointer;
+  outline: none;
+  padding: 15px 30px 15px 30px;
+  background-color: #4f46e5;
+`
+export const LoadingContainer = styled.div`
+  height: 100vh;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`
+
 export const HomeResponsiveContainer = styled.div`
   display: flex;
   justify-content: center;
@@ -7,7 +47,6 @@ export const HomeResponsiveContainer = styled.div`
 export const HomeDetailsContainer = styled.div`
   background-color: ${props => (props.darkTheme ? '#181818' : '#f9f9f9')};
   flex-grow: 1;
-  max-width: 1000px;
   display: flex;
   flex-direction: column;
 `
@@ -49,14 +88,55 @@ export const PremiumContent = styled.div`
 export const HomeNavbar = styled.nav`
   background-color: ${props => (props.darkTheme ? '#212121' : '#ffffff')};
   display: flex;
+  align-items: center;
   flex-direction: column;
+  justify-content: space-between;
   width: 300px;
   flex-shrink: 0;
-
+  height: 100vh;
   @media screen and (max-width: 767px) {
     display: none;
   }
 `
+export const FooterSection = styled.div`
+  padding: 30px;
+  display: flex;
+  flex-direction: column;
+  width: 80%;
+`
+
+export const FooterTitle = styled.h1`
+  color: ${props => (props.darkTheme ? '#f9f9f9' : '#1e293b')};
+`
+export const FooterIconsContainer = styled.div`
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+`
+export const FooterIcon = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: ${props => {
+    if (props.facebook) {
+      return '#00306e'
+    }
+    if (props.twitter) {
+      return '#3b82f6'
+    }
+    return ' #3366ff'
+  }};
+  height: 40px;
+  width: 40px;
+  border-radius: 200px;
+`
+
+export const FooterDescription = styled.p`
+  font-weight: 500;
+  color: ${props => (props.darkTheme ? '#f1f1f1' : '#231f20')};
+`
+
 export const SearchInputContainer = styled.form`
   margin-top: 20px;
   display: flex;

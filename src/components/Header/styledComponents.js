@@ -1,6 +1,8 @@
 import styled from 'styled-components'
 
 export const Navbar = styled.nav`
+  width: 100%;
+
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -8,8 +10,6 @@ export const Navbar = styled.nav`
   background-color: ${props => (props.darkTheme ? '#212121' : '#ffffff')};
   @media screen and (min-width: 768px) {
     padding: 30px 60px 30px 60px;
-    max-width: 1300px;
-    margin: auto;
   }
 `
 export const NavbarCompanyLogo = styled.img`
@@ -63,6 +63,7 @@ export const ModalOptionsContainer = styled.ul`
   align-items: ${props => (props.home ? 'flex-start' : 'center')};
   list-style-type: none;
   padding-left: 0;
+  width: 100%;
 `
 export const OptionText = styled.p`
   color: ${props => (props.darkTheme ? '#f9f9f9' : '#181818')};
