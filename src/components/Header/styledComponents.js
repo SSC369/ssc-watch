@@ -60,7 +60,6 @@ export const ModalNavbarOption = styled.li`
 export const ModalOptionsContainer = styled.ul`
   display: flex;
   flex-direction: column;
-  align-items: ${props => (props.home ? 'flex-start' : 'center')};
   list-style-type: none;
   padding-left: 0;
   width: 100%;
@@ -140,3 +139,6 @@ export const IconButton = styled.button`
   background-color: transparent;
   border: none;
 `
+export const contentStyle = {background: '#000'}
+export const overlayStyle = {background: 'rgba(0,0,0,0.5)'}
+export const arrowStyle = {color: '#000'}

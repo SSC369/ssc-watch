@@ -20,6 +20,7 @@ export const NoVideosDescription = styled.p`
   margin-top: 20px;
   margin-bottom: 20px;
   font-size: 14px;
+  font-weight: 400;
   color: ${props => (props.darkTheme ? '#cccccc' : '#212121')};
 `
 export const RetryButton = styled.button`

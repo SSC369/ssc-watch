@@ -1,11 +1,11 @@
 import styled from 'styled-components'
 
 export const GamingVideosResponsiveContainer = styled.div`
+  background-color: ${props => (props.darkTheme ? '#0f0f0f' : '#f9f9f9')};
   display: flex;
-  background-color: ${props => (props.darkTheme ? '#181818' : '#f9f9f9')};
 `
 
-export const GamingContainer = styled.div`
+export const GamingVideosContainer = styled.div`
   width: 100%;
   display: flex;
   flex-direction: column;

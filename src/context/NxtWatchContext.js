@@ -4,6 +4,7 @@ const NxtWatchContext = React.createContext({
   darkTheme: false,
   savedVideos: [],
   toggleTheme: () => {},
+  saveVideo: () => {},
 })
 
 export default NxtWatchContext

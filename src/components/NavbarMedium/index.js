@@ -23,6 +23,7 @@ const NavbarMedium = () => (
   <NxtWatchContext.Consumer>
     {value => {
       const {darkTheme} = value
+      const IconColor = darkTheme ? '#f9f9f9' : '#181818'
       return (
         <HomeNavbar darkTheme={darkTheme}>
           <ModalOptionsContainer>

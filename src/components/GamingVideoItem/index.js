@@ -1,3 +1,4 @@
+import {Link} from 'react-router-dom'
 import NxtWatchContext from '../../context/NxtWatchContext'
 
 import {
@@ -6,29 +7,28 @@ import {
   GamingVideoThumbnail,
   GamingVideoDetailsContainer,
   GamingVideoViews,
-  WorldWideText,
-  GamingDescription,
 } from './styledComponents'
 
 const GamingVideoItem = props => {
   const {video} = props
-  const {title, viewCount, thumbnailUrl} = video
+  const {id, title, viewCount, thumbnailUrl} = video
   return (
     <NxtWatchContext.Consumer>
       {value => {
         const {darkTheme} = value
         return (
           <GamingVideo>
-            <GamingVideoThumbnail src={thumbnailUrl} />
-            <GamingVideoDetailsContainer>
-              <GamingVideoTitle darkTheme={darkTheme}>{title}</GamingVideoTitle>
-              <GamingDescription>
+            <Link to={`/videos/${id}`} className="nav-link">
+              <GamingVideoThumbnail src={thumbnailUrl} />
+              <GamingVideoDetailsContainer>
+                <GamingVideoTitle darkTheme={darkTheme}>
+                  {title}
+                </GamingVideoTitle>
                 <GamingVideoViews darkTheme={darkTheme}>
-                  {viewCount} Watching
+                  {viewCount} Watching Worldwide
                 </GamingVideoViews>
-                <WorldWideText darkTheme={darkTheme}>Worldwide</WorldWideText>
-              </GamingDescription>
-            </GamingVideoDetailsContainer>
+              </GamingVideoDetailsContainer>
+            </Link>
           </GamingVideo>
         )
       }}

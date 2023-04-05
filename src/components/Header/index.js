@@ -30,6 +30,7 @@ import {
   CancelButton,
   ConfirmButton,
   IconButton,
+  overlayStyle,
 } from './styledComponents'
 
 const Header = props => (
@@ -44,14 +45,16 @@ const Header = props => (
       }
       return (
         <Navbar darkTheme={darkTheme}>
-          <NavbarCompanyLogo
-            src={
-              darkTheme
-                ? 'https://assets.ccbp.in/frontend/react-js/nxt-watch-logo-dark-theme-img.png'
-                : 'https://assets.ccbp.in/frontend/react-js/nxt-watch-logo-light-theme-img.png'
-            }
-            alt="company logo"
-          />
+          <Link to="/" className="nav-link">
+            <NavbarCompanyLogo
+              src={
+                darkTheme
+                  ? 'https://assets.ccbp.in/frontend/react-js/nxt-watch-logo-dark-theme-img.png'
+                  : 'https://assets.ccbp.in/frontend/react-js/nxt-watch-logo-light-theme-img.png'
+              }
+              alt="company logo"
+            />
+          </Link>
           <NavbarMediumOptionsContainer>
             {darkTheme ? (
               <IconButton type="button" onClick={() => toggleTheme()}>
@@ -70,6 +73,7 @@ const Header = props => (
 
             <Popup
               modal
+              overlayStyle={overlayStyle}
               trigger={
                 <LogoutButton darkTheme={darkTheme} type="button">
                   Logout
@@ -111,6 +115,7 @@ const Header = props => (
 
             <Popup
               modal
+              overlayStyle={overlayStyle}
               trigger={
                 <IconButton type="button">
                   <GiHamburgerMenu
@@ -174,6 +179,7 @@ const Header = props => (
 
             <Popup
               modal
+              overlayStyle={overlayStyle}
               trigger={
                 <IconButton type="button">
                   <FiLogOut

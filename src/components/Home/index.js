@@ -61,9 +61,9 @@ class Home extends Component {
       },
     }
     const response = await fetch(url, options)
-    const data = await response.json()
 
     if (response.ok) {
+      const data = await response.json()
       const formattedData = data.videos.map(video => {
         const eachVideo = {
           id: video.id,

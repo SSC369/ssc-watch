@@ -2,7 +2,7 @@ import styled from 'styled-components'
 
 export const TrendingVideosResponsiveContainer = styled.div`
   display: flex;
-  background-color: ${props => (props.darkTheme ? '#181818' : '#f9f9f9')};
+  background-color: ${props => (props.darkTheme ? '#0f0f0f' : '#f9f9f9')};
 `
 
 export const TrendingContainer = styled.div`
@@ -16,7 +16,6 @@ export const TrendingVideosHeadingContainer = styled.div`
   align-items: center;
   background-color: ${props => (props.darkTheme ? ' #424242' : ' #f1f1f1')};
   height: 160px;
-  flex-grow: 1;
   padding-left: 30px;
   @media screen and (max-width: 575px) {
     height: 100px;

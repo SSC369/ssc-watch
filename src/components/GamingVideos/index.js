@@ -19,7 +19,7 @@ import {
   GamingVideosHeadingContainer,
   GamingHeading,
   GamingIconContainer,
-  GamingContainer,
+  GamingVideosContainer,
   GamingVideosList,
 } from './styledComponents'
 
@@ -141,7 +141,7 @@ class GamingVideos extends Component {
               <Header />
               <GamingVideosResponsiveContainer darkTheme={darkTheme}>
                 <NavbarMedium />
-                <GamingContainer>
+                <GamingVideosContainer>
                   <GamingVideosHeadingContainer darkTheme={darkTheme}>
                     <GamingIconContainer darkTheme={darkTheme}>
                       <SiYoutubegaming fontSize={30} color="#ff0000" />
@@ -149,7 +149,7 @@ class GamingVideos extends Component {
                     <GamingHeading darkTheme={darkTheme}>Gaming</GamingHeading>
                   </GamingVideosHeadingContainer>
                   {this.renderVideosData(darkTheme)}
-                </GamingContainer>
+                </GamingVideosContainer>
               </GamingVideosResponsiveContainer>
             </>
           )

@@ -5,7 +5,7 @@ export const Video = styled.li`
   flex-direction: column;
   margin-right: 10px;
   padding: 20px;
-
+  min-width: 200px;
   @media screen and (max-width: 575px) {
     width: 100%;
   }
@@ -31,8 +31,8 @@ export const VideoChannelImage = styled.img`
   height: 30px;
   margin-right: 10px;
   @media screen and (max-width: 575px) {
-    width: 20px;
-    height: 20px;
+    width: 26px;
+    height: 26px;
   }
 `
 export const VideoDetailsContainer = styled.div`
@@ -44,7 +44,8 @@ export const VideoTitle = styled.p`
   margin-top: 0;
   font-size: 14px;
   color: ${props => (props.darkTheme ? '#f9f9f9' : '#1e293b')};
-  font-weight: 400;
+  font-weight: 500;
+
   @media screen and (min-width: 768px) {
     font-size: 12px;
   }

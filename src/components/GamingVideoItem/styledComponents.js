@@ -6,15 +6,15 @@ export const GamingVideo = styled.li`
   margin-bottom: 10px;
   margin-right: 10px;
   width: 30%;
-  padding: 20px;
-  @media screen and (max-width: 575px) {
-    width: 100px;
+  flex-grow: 1;
+
+  @media screen and (min-width: 992px) {
+    padding: 30px;
   }
 `
 export const GamingVideoThumbnail = styled.img`
-  @media screen and (max-width: 576px) {
-    width: 100%;
-  }
+  width: 100%;
+  max-width: 300px;
 `
 export const GamingVideoDetailsContainer = styled.div`
   display: flex;
@@ -33,28 +33,12 @@ export const GamingVideoTitle = styled.h1`
   }
 `
 export const GamingVideoViews = styled.p`
-  font-size: 16px;
+  font-size: 10px;
   color: #475569;
   font-weight: 500;
+  line-height: 2;
+  margin-top: 0;
   @media screen and (min-width: 768px) {
-    font-size: 20px;
-  }
-`
-export const WorldWideText = styled.p`
-  color: #475569;
-  font-size: 16px;
-  font-weight: 500;
-  @media screen and (min-width: 576px) {
-    font-size: 20px;
-    margin-left: 10px;
-  }
-`
-export const GamingDescription = styled.div`
-  display: flex;
-  flex-direction: column;
-
-  @media screen and (min-width: 576px) {
-    flex-direction: row;
-    align-items: center;
+    font-size: 16px;
   }
 `

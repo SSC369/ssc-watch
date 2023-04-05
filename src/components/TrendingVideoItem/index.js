@@ -1,3 +1,4 @@
+import {Link} from 'react-router-dom'
 import NxtWatchContext from '../../context/NxtWatchContext'
 import {
   VideoChannelImage,
@@ -17,6 +18,7 @@ import {
 const TrendingVideoItem = props => {
   const {video} = props
   const {
+    id,
     channelName,
     channelProfileImageUrl,
     thumbnailUrl,
@@ -29,22 +31,26 @@ const TrendingVideoItem = props => {
       {value => {
         const {darkTheme} = value
         return (
-          <TrendingVideo>
-            <TrendingVideoThumbnail src={thumbnailUrl} />
-            <TrendingVideoChannelContainer>
-              <VideoChannelImage src={channelProfileImageUrl} />
-              <TrendingVideoDetailsContainer>
-                <TrendingVideoTitle darkTheme={darkTheme}>
-                  {title}
-                </TrendingVideoTitle>
-                <VideoChannel darkTheme={darkTheme}>{channelName}</VideoChannel>
-                <DateViewsContainer darkTheme={darkTheme}>
-                  <VideoViews>{viewCount} views</VideoViews>
-                  <VideoPublishedAt>{publishedAt}</VideoPublishedAt>
-                </DateViewsContainer>
-              </TrendingVideoDetailsContainer>
-            </TrendingVideoChannelContainer>
-          </TrendingVideo>
+          <Link to={`/videos/${id}`} className="nav-link">
+            <TrendingVideo>
+              <TrendingVideoThumbnail src={thumbnailUrl} />
+              <TrendingVideoChannelContainer>
+                <VideoChannelImage src={channelProfileImageUrl} />
+                <TrendingVideoDetailsContainer>
+                  <TrendingVideoTitle darkTheme={darkTheme}>
+                    {title}
+                  </TrendingVideoTitle>
+                  <VideoChannel darkTheme={darkTheme}>
+                    {channelName}
+                  </VideoChannel>
+                  <DateViewsContainer darkTheme={darkTheme}>
+                    <VideoViews>{viewCount} views</VideoViews>
+                    <VideoPublishedAt>{publishedAt}</VideoPublishedAt>
+                  </DateViewsContainer>
+                </TrendingVideoDetailsContainer>
+              </TrendingVideoChannelContainer>
+            </TrendingVideo>
+          </Link>
         )
       }}
     </NxtWatchContext.Consumer>
