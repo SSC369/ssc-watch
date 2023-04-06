@@ -30,7 +30,7 @@ export const TrendingVideoChannelContainer = styled.div`
     width: 80%;
   }
 `
-export const TrendingVideoTitle = styled.h1`
+export const TrendingVideoTitle = styled.p`
   margin-top: 0;
   font-size: 16px;
   color: ${props => (props.darkTheme ? '#f9f9f9' : '#1e293b')};

@@ -1,5 +1,11 @@
 import styled from 'styled-components'
 
+export const BgContainer = styled.div`
+  background-color: ${props => (props.darkTheme ? '#181818' : '#f9f9f9')};
+  display: flex;
+  flex-direction: column;
+`
+
 export const NoVideosViewContainer = styled.div`
   padding-top: 60px;
   padding-bottom: 60px;
@@ -43,10 +49,10 @@ export const LoadingContainer = styled.div`
 
 export const HomeResponsiveContainer = styled.div`
   display: flex;
+  background-color: ${props => (props.darkTheme ? '#181818' : '#f9f9f9')};
   justify-content: center;
 `
 export const HomeDetailsContainer = styled.div`
-  background-color: ${props => (props.darkTheme ? '#181818' : '#f9f9f9')};
   flex-grow: 1;
   display: flex;
   flex-direction: column;
@@ -156,6 +162,7 @@ export const HomeInputElement = styled.input`
   border: 2px solid ${props => (props.darkTheme ? '#212121' : '#d7dfe9')};
   height: 36px;
 `
+
 export const SearchButton = styled.button`
   cursor: pointer;
   outline: none;

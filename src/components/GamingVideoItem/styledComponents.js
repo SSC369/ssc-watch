@@ -22,7 +22,7 @@ export const GamingVideoDetailsContainer = styled.div`
   align-items: flex-start;
 `
 
-export const GamingVideoTitle = styled.h1`
+export const GamingVideoTitle = styled.p`
   margin-top: 10px;
   font-size: 16px;
   margin-bottom: 10px;

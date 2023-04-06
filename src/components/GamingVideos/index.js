@@ -51,10 +51,8 @@ class GamingVideos extends Component {
       },
     }
     const response = await fetch(url, options)
-    console.log(response)
     if (response.ok === true) {
       const data = await response.json()
-      console.log(data)
       const formattedData = data.videos.map(video => {
         const eachVideo = {
           id: video.id,
@@ -88,6 +86,7 @@ class GamingVideos extends Component {
   renderFailureView = darkTheme => (
     <NoVideosViewContainer>
       <NoVideosImage
+        alt="failure view"
         src={
           darkTheme
             ? 'https://assets.ccbp.in/frontend/react-js/nxt-watch-failure-view-dark-theme-img.png'
@@ -139,10 +138,16 @@ class GamingVideos extends Component {
           return (
             <>
               <Header />
-              <GamingVideosResponsiveContainer darkTheme={darkTheme}>
+              <GamingVideosResponsiveContainer
+                data-testid="gaming"
+                darkTheme={darkTheme}
+              >
                 <NavbarMedium />
                 <GamingVideosContainer>
-                  <GamingVideosHeadingContainer darkTheme={darkTheme}>
+                  <GamingVideosHeadingContainer
+                    data-testid="banner"
+                    darkTheme={darkTheme}
+                  >
                     <GamingIconContainer darkTheme={darkTheme}>
                       <SiYoutubegaming fontSize={30} color="#ff0000" />
                     </GamingIconContainer>

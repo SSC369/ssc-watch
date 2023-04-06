@@ -1,5 +1,5 @@
 import {Component} from 'react'
-
+import {formatDistanceToNow} from 'date-fns'
 import Loader from 'react-loader-spinner'
 import {RiCloseFill} from 'react-icons/ri'
 import {AiOutlineSearch} from 'react-icons/ai'
@@ -65,6 +65,9 @@ class Home extends Component {
     if (response.ok) {
       const data = await response.json()
       const formattedData = data.videos.map(video => {
+        const publishedDate = ` ${formatDistanceToNow(
+          new Date(video.published_at),
+        ).slice(-7)} ago`
         const eachVideo = {
           id: video.id,
           title: video.title,
@@ -72,7 +75,7 @@ class Home extends Component {
           channelName: video.channel.name,
           channelProfileImageUrl: video.channel.profile_image_url,
           viewCount: video.view_count,
-          publishedAt: video.published_at,
+          publishedAt: publishedDate,
         }
         return eachVideo
       })
@@ -105,7 +108,7 @@ class Home extends Component {
         No Search results found
       </NoVideosTitle>
       <NoVideosDescription darkTheme={darkTheme}>
-        Try different key words or remove the search filter
+        Try different key words or remove search filter
       </NoVideosDescription>
       <RetryButton type="button" onClick={() => this.getHomeData()}>
         Retry
@@ -141,6 +144,7 @@ class Home extends Component {
   renderFailureView = darkTheme => (
     <NoVideosViewContainer>
       <NoVideosImage
+        alt="failure view"
         src={
           darkTheme
             ? 'https://assets.ccbp.in/frontend/react-js/nxt-watch-failure-view-dark-theme-img.png'
@@ -182,11 +186,11 @@ class Home extends Component {
           return (
             <>
               <Header />
-              <HomeResponsiveContainer>
-                <NavbarMedium darkTheme />
-                <HomeDetailsContainer darkTheme={darkTheme}>
+              <HomeResponsiveContainer data-testid="home" darkTheme={darkTheme}>
+                <NavbarMedium />
+                <HomeDetailsContainer>
                   {displayPremium && (
-                    <PremiumMembershipContainer>
+                    <PremiumMembershipContainer data-testid="banner">
                       <PremiumContent>
                         <PremiumImage
                           src="https://assets.ccbp.in/frontend/react-js/nxt-watch-logo-light-theme-img.png"
@@ -198,6 +202,7 @@ class Home extends Component {
                         <GetItButton>GET IT NOW</GetItButton>
                       </PremiumContent>
                       <PremiumCloseButton
+                        data-testid="close"
                         type="button"
                         onClick={() => {
                           this.setState({displayPremium: false})
@@ -218,9 +223,13 @@ class Home extends Component {
                         onChange={this.onChangeSearchInput}
                         placeholder="Search"
                         darkTheme={darkTheme}
-                        type="text"
+                        type="search"
                       />
-                      <SearchButton darkTheme={darkTheme} type="submit">
+                      <SearchButton
+                        data-testid="searchButton"
+                        darkTheme={darkTheme}
+                        type="submit"
+                      >
                         <AiOutlineSearch
                           fontSize={20}
                           color={darkTheme ? '#f9f9f9' : '#181818'}

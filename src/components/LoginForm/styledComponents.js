@@ -91,7 +91,7 @@ export const LoginButton = styled.button`
   border-radius: 8px;
   border: none;
   background-color: #3b82f6;
-  color: white;
+  color: #ffffff;
   font-weight: 600;
   cursor: pointer;
   outline: none;

@@ -52,7 +52,7 @@ const Header = props => (
                   ? 'https://assets.ccbp.in/frontend/react-js/nxt-watch-logo-dark-theme-img.png'
                   : 'https://assets.ccbp.in/frontend/react-js/nxt-watch-logo-light-theme-img.png'
               }
-              alt="company logo"
+              alt="website logo"
             />
           </Link>
           <NavbarMediumOptionsContainer>
@@ -61,7 +61,11 @@ const Header = props => (
                 <HiSun color="white" fontSize={30} />
               </IconButton>
             ) : (
-              <IconButton type="button" onClick={() => toggleTheme()}>
+              <IconButton
+                data-testid="theme"
+                type="button"
+                onClick={() => toggleTheme()}
+              >
                 <FaMoon fontSize={20} />
               </IconButton>
             )}
@@ -83,7 +87,7 @@ const Header = props => (
               {close => (
                 <LogoutModalContainer darkTheme={darkTheme}>
                   <ConfirmationText darkTheme={darkTheme}>
-                    Are you sure you want to logout?
+                    Are you sure, you want to logout
                   </ConfirmationText>
                   <LogoutButtonsContainer>
                     <CancelButton

@@ -19,7 +19,7 @@ const GamingVideoItem = props => {
         return (
           <GamingVideo>
             <Link to={`/videos/${id}`} className="nav-link">
-              <GamingVideoThumbnail src={thumbnailUrl} />
+              <GamingVideoThumbnail src={thumbnailUrl} alt="video thumbnail" />
               <GamingVideoDetailsContainer>
                 <GamingVideoTitle darkTheme={darkTheme}>
                   {title}

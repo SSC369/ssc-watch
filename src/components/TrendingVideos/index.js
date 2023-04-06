@@ -1,5 +1,6 @@
 import {Component} from 'react'
 import Cookie from 'js-cookie'
+import {formatDistanceToNow} from 'date-fns'
 import Loader from 'react-loader-spinner'
 import {HiFire} from 'react-icons/hi'
 import NxtWatchContext from '../../context/NxtWatchContext'
@@ -54,6 +55,9 @@ class TrendingVideos extends Component {
     if (response.ok === true) {
       const data = await response.json()
       const formattedData = data.videos.map(video => {
+        const publishedDate = ` ${formatDistanceToNow(
+          new Date(video.published_at),
+        ).slice(-7)} ago`
         const eachVideo = {
           id: video.id,
           title: video.title,
@@ -61,7 +65,7 @@ class TrendingVideos extends Component {
           channelName: video.channel.name,
           channelProfileImageUrl: video.channel.profile_image_url,
           viewCount: video.view_count,
-          publishedAt: video.published_at,
+          publishedAt: publishedDate,
         }
         return eachVideo
       })
@@ -89,6 +93,7 @@ class TrendingVideos extends Component {
   renderFailureView = darkTheme => (
     <NoVideosViewContainer>
       <NoVideosImage
+        alt="failure view"
         src={
           darkTheme
             ? 'https://assets.ccbp.in/frontend/react-js/nxt-watch-failure-view-dark-theme-img.png'
@@ -140,10 +145,16 @@ class TrendingVideos extends Component {
           return (
             <>
               <Header />
-              <TrendingVideosResponsiveContainer darkTheme={darkTheme}>
+              <TrendingVideosResponsiveContainer
+                data-testid="trending"
+                darkTheme={darkTheme}
+              >
                 <NavbarMedium />
                 <TrendingContainer>
-                  <TrendingVideosHeadingContainer darkTheme={darkTheme}>
+                  <TrendingVideosHeadingContainer
+                    data-testid="banner"
+                    darkTheme={darkTheme}
+                  >
                     <TrendingIconContainer darkTheme={darkTheme}>
                       <HiFire fontSize={30} color="#ff0000" />
                     </TrendingIconContainer>

@@ -33,9 +33,15 @@ const TrendingVideoItem = props => {
         return (
           <Link to={`/videos/${id}`} className="nav-link">
             <TrendingVideo>
-              <TrendingVideoThumbnail src={thumbnailUrl} />
+              <TrendingVideoThumbnail
+                src={thumbnailUrl}
+                alt="video thumbnail"
+              />
               <TrendingVideoChannelContainer>
-                <VideoChannelImage src={channelProfileImageUrl} />
+                <VideoChannelImage
+                  src={channelProfileImageUrl}
+                  alt="channel logo"
+                />
                 <TrendingVideoDetailsContainer>
                   <TrendingVideoTitle darkTheme={darkTheme}>
                     {title}

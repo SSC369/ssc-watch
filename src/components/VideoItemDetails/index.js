@@ -26,9 +26,6 @@ import {
   VideoPublishedDate,
   VideoViewCount,
   LikeButton,
-  LikeText,
-  DisLikeText,
-  SaveText,
   IconContainer,
   VideoChannelThumbnail,
   VideoChannelContainer,
@@ -51,7 +48,6 @@ class VideoItemDetails extends Component {
     responseStatus: apiStatus.initial,
     likeClicked: false,
     dislikeClicked: false,
-    saveClicked: false,
   }
 
   componentDidMount() {
@@ -63,7 +59,6 @@ class VideoItemDetails extends Component {
     const jwtToken = Cookie.get('jwt_token')
     const {match} = this.props
     const {params} = match
-
     const {id} = params
     const url = `https://apis.ccbp.in/videos/${id}`
     const options = {
@@ -77,9 +72,9 @@ class VideoItemDetails extends Component {
       const data = await response.json()
       const video = data.video_details
 
-      const publishedDate = formatDistanceToNow(
+      const publishedDate = ` ${formatDistanceToNow(
         new Date(video.published_at),
-      ).slice(-7)
+      ).slice(-7)} ago`
 
       const formattedData = {
         channelName: video.channel.name,
@@ -130,10 +125,10 @@ class VideoItemDetails extends Component {
   renderVideoDetails = () => (
     <NxtWatchContext.Consumer>
       {value => {
-        const {saveVideo, darkTheme} = value
+        const {saveVideo, darkTheme, savedVideos} = value
         const {
           videoDetails,
-          saveClicked,
+
           likeClicked,
           dislikeClicked,
         } = this.state
@@ -149,7 +144,10 @@ class VideoItemDetails extends Component {
           channelProfileImage,
           subs,
         } = videoDetails
-        const IconColor = darkTheme ? '#cbd5e1' : '#475569'
+
+        const findVideo = savedVideos.find(eachVideo => eachVideo.id === id)
+        const isSaved = findVideo === undefined ? 'false' : 'true'
+        const saveText = isSaved === 'true' ? 'Saved' : 'Save'
 
         const onClickSave = () => {
           const SaveVideoDetails = {
@@ -160,12 +158,14 @@ class VideoItemDetails extends Component {
             publishedAt,
             title,
           }
-          this.setState(prevState => ({saveClicked: !prevState.saveClicked}))
           saveVideo(SaveVideoDetails)
         }
 
         return (
-          <VideoItemDetailsContainer darkTheme={darkTheme}>
+          <VideoItemDetailsContainer
+            data-testid="videoItemDetails"
+            darkTheme={darkTheme}
+          >
             <ReactPlayer controls width="100%" url={videoUrl} />
             <VideoTitle darkTheme={darkTheme}>{title}</VideoTitle>
             <VideoDetails>
@@ -174,72 +174,69 @@ class VideoItemDetails extends Component {
                   {viewCount} views
                 </VideoViewCount>
                 <BsDot
-                  color={darkTheme ? '#cbd5e1' : '#475569'}
+                  color={darkTheme ? '#cbd5e1' : '#64748b'}
                   fontSize={20}
                 />
                 <VideoPublishedDate darkTheme={darkTheme}>
-                  {publishedAt} ago
+                  {publishedAt}
                 </VideoPublishedDate>
               </RowAlign>
+
               <RowAlign>
                 <IconContainer>
                   <LikeButton
+                    fontWeight={likeClicked ? '500' : '400'}
+                    color={likeClicked ? '#2563eb' : '#64748b'}
                     onClick={this.onClickLike}
                     id="like"
                     type="button"
                   >
                     <BiLike
-                      color={likeClicked ? '#2563eb' : IconColor}
-                      fontSize={16}
+                      className="react-icon"
+                      color={likeClicked ? '#2563eb' : '#64748b'}
+                      fontSize={18}
                     />
-                  </LikeButton>
-                  <LikeText
-                    darkTheme={darkTheme}
-                    likeClicked={likeClicked}
-                    htmlFor="like"
-                  >
                     Like
-                  </LikeText>
+                  </LikeButton>
                 </IconContainer>
                 <IconContainer>
                   <LikeButton
+                    fontWeight={dislikeClicked ? '500' : '400'}
+                    color={dislikeClicked ? '#2563eb' : '#64748b'}
                     onClick={this.onClickDisLike}
-                    id="dislike"
                     type="button"
                   >
                     <BiDislike
-                      color={dislikeClicked ? '#2563eb' : IconColor}
-                      fontSize={16}
+                      className="react-icon"
+                      color={dislikeClicked ? '#2563eb' : '#64748b'}
+                      fontSize={18}
                     />
-                  </LikeButton>
-                  <DisLikeText
-                    darkTheme={darkTheme}
-                    dislikeClicked={dislikeClicked}
-                    htmlFor="dislike"
-                  >
                     Dislike
-                  </DisLikeText>
+                  </LikeButton>
                 </IconContainer>
                 <IconContainer>
-                  <LikeButton onClick={onClickSave} id="save" type="button">
-                    <MdPlaylistAdd
-                      color={saveClicked ? '#2563eb' : IconColor}
-                      fontSize={16}
-                    />
-                  </LikeButton>
-                  <SaveText
-                    darkTheme={darkTheme}
-                    saveClicked={saveClicked}
-                    htmlFor="save"
+                  <LikeButton
+                    fontWeight={isSaved === 'true' ? '500' : '400'}
+                    color={isSaved === 'true' ? '#2563eb' : '#64748b '}
+                    onClick={onClickSave}
+                    type="button"
                   >
-                    {saveClicked ? 'Saved' : 'Save'}
-                  </SaveText>
+                    <MdPlaylistAdd
+                      className="react-icon"
+                      color={isSaved === 'true' ? '#2563eb' : '#64748b '}
+                      fontSize={18}
+                    />
+                    <p>{saveText}</p>
+                  </LikeButton>
                 </IconContainer>
               </RowAlign>
             </VideoDetails>
 
             <VideoChannelContainer>
-              <VideoChannelThumbnail src={channelProfileImage} />
+              <VideoChannelThumbnail
+                src={channelProfileImage}
+                alt="channel logo"
+              />
               <ChannelDetailsContainer>
                 <ChannelName darkTheme={darkTheme}>{channelName}</ChannelName>
                 <ChannelSubs darkTheme={darkTheme}>
@@ -270,6 +267,7 @@ class VideoItemDetails extends Component {
   renderFailureView = darkTheme => (
     <NoVideosViewContainer>
       <NoVideosImage
+        alt="failure view"
         src={
           darkTheme
             ? 'https://assets.ccbp.in/frontend/react-js/nxt-watch-failure-view-dark-theme-img.png'

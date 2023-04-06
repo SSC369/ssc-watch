@@ -1,5 +1,6 @@
 import {Component} from 'react'
 import Cookie from 'js-cookie'
+import {Redirect} from 'react-router-dom'
 import {
   LoginFormContainer,
   LoginFormCard,
@@ -54,7 +55,7 @@ class LoginForm extends Component {
       const data = await response.json()
       Cookie.set('jwt_token', data.jwt_token, {expires: 30})
       const {history} = this.props
-      history.push('/')
+      history.replace('/')
     } else {
       const data = await response.json()
       this.setState({errorMsg: `*${data.error_msg}`})
@@ -62,6 +63,10 @@ class LoginForm extends Component {
   }
 
   render() {
+    const jwtToken = Cookie.get('jwt_token')
+    if (jwtToken !== undefined) {
+      return <Redirect to="/" />
+    }
     const {password, username, showPass, errorMsg, darkTheme} = this.state
 
     return (

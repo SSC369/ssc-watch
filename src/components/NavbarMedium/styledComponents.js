@@ -5,7 +5,6 @@ export const HomeNavbar = styled.nav`
   display: flex;
   align-items: center;
   flex-direction: column;
-  justify-content: space-between;
   width: 300px;
   flex-shrink: 0;
 
@@ -14,13 +13,18 @@ export const HomeNavbar = styled.nav`
   }
 `
 export const FooterSection = styled.div`
-  padding: 30px;
+  padding: 140px 30px 30px 30px;
   display: flex;
   flex-direction: column;
   width: 80%;
 `
 
-export const FooterTitle = styled.h1`
+export const SocialMediaImage = styled.img`
+  height: 40px;
+  width: 40px;
+`
+
+export const FooterTitle = styled.p`
   color: ${props => (props.darkTheme ? '#f9f9f9' : '#1e293b')};
 `
 export const FooterIconsContainer = styled.div`
@@ -29,25 +33,69 @@ export const FooterIconsContainer = styled.div`
   justify-content: space-between;
   align-items: center;
 `
-export const FooterIcon = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background-color: ${props => {
-    if (props.facebook) {
-      return '#00306e'
-    }
-    if (props.twitter) {
-      return '#3b82f6'
-    }
-    return ' #3366ff'
-  }};
-  height: 40px;
-  width: 40px;
-  border-radius: 200px;
-`
 
 export const FooterDescription = styled.p`
   font-weight: 500;
   color: ${props => (props.darkTheme ? '#f1f1f1' : '#231f20')};
+`
+export const NavButton = styled.button`
+  background-color: transparent;
+  border: none;
+  width: 100%;
+  padding: 0;
+`
+export const NavbarOption = styled.li`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  margin-bottom: 10px;
+`
+export const HomeOption = styled(NavbarOption)`
+  background-color: ${props => {
+    const {darkTheme, selectedTab} = props
+    const themeColor = darkTheme ? '#424242' : '#f1f5f9'
+    if (selectedTab === 'HOME') {
+      return themeColor
+    }
+    return null
+  }};
+  font-weight: ${props => (props.selectedTab === 'HOME' ? '600' : '500')};
+`
+export const GamingOption = styled(NavbarOption)`
+  background-color: ${props => {
+    const {darkTheme, selectedTab} = props
+
+    const themeColor = darkTheme ? '#424242' : '#f1f5f9'
+    if (selectedTab === 'GAMING') {
+      return themeColor
+    }
+    return null
+  }};
+  font-weight: ${props => (props.selectedTab === 'HOME' ? '600' : '500')};
+`
+export const SavedVideosOption = styled(NavbarOption)`
+  background-color: ${props => {
+    const {darkTheme, selectedTab} = props
+
+    const themeColor = darkTheme ? '#424242' : '#f1f5f9'
+    if (selectedTab === 'PLAYLIST') {
+      return themeColor
+    }
+    return null
+  }};
+  font-weight: ${props => (props.selectedTab === 'HOME' ? '600' : '500')};
+`
+
+export const TrendingOption = styled(NavbarOption)`
+  background-color: ${props => {
+    const {darkTheme, selectedTab} = props
+
+    const themeColor = darkTheme ? '#424242' : '#f1f5f9'
+    if (selectedTab === 'TRENDING') {
+      return themeColor
+    }
+    return null
+  }};
+  font-weight: ${props => (props.selectedTab === 'HOME' ? '600' : '500')};
 `

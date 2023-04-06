@@ -3,21 +3,18 @@ import Header from '../Header'
 import SavedVideoItem from '../SavedVideoItem'
 import NavbarMedium from '../NavbarMedium'
 import NxtWatchContext from '../../context/NxtWatchContext'
-import {
-  TrendingVideosHeadingContainer,
-  TrendingIconContainer,
-  TrendingHeading,
-} from '../TrendingVideos/styledComponents'
-import {
-  NoVideosDescription,
-  NoVideosImage,
-  NoVideosTitle,
-  NoVideosViewContainer,
-} from '../Home/styledComponents'
+
 import {
   SavedVideosResponsiveContainer,
   SavedVideosContainer,
   SavedVideosList,
+  SavedVideosHeadingContainer,
+  SavedVideosIconContainer,
+  SavedVideosHeading,
+  NotSavedVideosViewContainer,
+  NotSavedVideosImage,
+  NotSavedVideosTitle,
+  NotSavedVideosDescription,
 } from './styledComponents'
 
 const SavedVideosRoute = () => (
@@ -34,34 +31,40 @@ const SavedVideosRoute = () => (
       )
 
       const renderEmptyView = () => (
-        <NoVideosViewContainer>
-          <NoVideosImage
+        <NotSavedVideosViewContainer>
+          <NotSavedVideosImage
             alt="no saved videos"
             src="https://assets.ccbp.in/frontend/react-js/nxt-watch-no-saved-videos-img.png"
           />
-          <NoVideosTitle darkTheme={darkTheme}>
-            No Saved Video Found
-          </NoVideosTitle>
-          <NoVideosDescription darkTheme={darkTheme}>
+          <NotSavedVideosTitle darkTheme={darkTheme}>
+            No saved videos found
+          </NotSavedVideosTitle>
+          <NotSavedVideosDescription darkTheme={darkTheme}>
             You can save your videos while watching them
-          </NoVideosDescription>
-        </NoVideosViewContainer>
+          </NotSavedVideosDescription>
+        </NotSavedVideosViewContainer>
       )
 
       return (
         <>
           <Header />
-          <SavedVideosResponsiveContainer darkTheme={darkTheme}>
+          <SavedVideosResponsiveContainer
+            data-testid="savedVideos"
+            darkTheme={darkTheme}
+          >
             <NavbarMedium />
             <SavedVideosContainer>
-              <TrendingVideosHeadingContainer darkTheme={darkTheme}>
-                <TrendingIconContainer darkTheme={darkTheme}>
+              <SavedVideosHeadingContainer
+                data-testid="banner"
+                darkTheme={darkTheme}
+              >
+                <SavedVideosIconContainer darkTheme={darkTheme}>
                   <HiFire fontSize={30} color="#ff0000" />
-                </TrendingIconContainer>
-                <TrendingHeading darkTheme={darkTheme}>
+                </SavedVideosIconContainer>
+                <SavedVideosHeading darkTheme={darkTheme}>
                   Saved Videos
-                </TrendingHeading>
-              </TrendingVideosHeadingContainer>
+                </SavedVideosHeading>
+              </SavedVideosHeadingContainer>
               {savedVideos.length === 0
                 ? renderEmptyView()
                 : renderSavedVideosData()}

@@ -10,7 +10,7 @@ export const VideoItemDetailsContainer = styled.div`
   padding: 30px 30px 100px 30px;
   background-color: ${props => (props.darkTheme ? '#0f0f0f' : '#f9f9f9')};
 `
-export const VideoTitle = styled.h1`
+export const VideoTitle = styled.p`
   font-size: 20px;
   color: ${props => (props.darkTheme ? '#e2e8f0' : '#212121')};
   margin-bottom: 0;
@@ -42,67 +42,22 @@ export const VideoViewCount = styled.p`
   font-size: 16px;
 `
 export const LikeButton = styled.button`
+  font-weight: ${props => props.fontWeight};
+  display: flex;
+  align-items: center;
+  color: ${props => props.color};
+  margin-bottom: 4px;
   background-color: transparent;
   border: none;
   outline: none;
   cursor: pointer;
-  padding-left: 0;
 `
-export const LikeText = styled.label`
-  color: ${props => {
-    const {likeClicked, darkTheme} = props
-    if (likeClicked) {
-      return '#2563eb'
-    }
-    if (darkTheme) {
-      return '#cbd5e1'
-    }
-    return '#475569'
-  }};
-  font-weight: ${props => (props.likeClicked ? '500' : '400')};
-  font-size: 14px;
-  margin-bottom: 4px;
-`
-export const DisLikeText = styled.label`
-  color: ${props => {
-    const {dislikeClicked, darkTheme} = props
-    if (dislikeClicked) {
-      return '#2563eb'
-    }
 
-    if (darkTheme) {
-      return '#cbd5e1'
-    }
-    if (!darkTheme) {
-      return '#475569'
-    }
-    return null
-  }};
-  font-weight: ${props => (props.dislikeClicked ? '500' : '400')};
-  font-size: 14px;
-  margin-bottom: 4px;
-`
-export const SaveText = styled.label`
-  color: ${props => {
-    const {saveClicked, darkTheme} = props
-    if (saveClicked) {
-      return '#2563eb'
-    }
-    if (darkTheme) {
-      return '#cbd5e1'
-    }
-    return '#475569'
-  }};
-  font-weight: ${props => (props.saveClicked ? '500' : '400')};
-  font-size: 14px;
-  margin-bottom: 4px;
-  width: 50px;
-`
 export const IconContainer = styled.div`
   display: flex;
   margin-top: 4px;
   align-items: center;
-  margin-right: 20px;
+  margin-right: 10px;
 `
 export const VideoChannelContainer = styled.div`
   padding-top: 30px;
