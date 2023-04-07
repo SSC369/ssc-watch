@@ -126,12 +126,7 @@ class VideoItemDetails extends Component {
     <NxtWatchContext.Consumer>
       {value => {
         const {saveVideo, darkTheme, savedVideos} = value
-        const {
-          videoDetails,
-
-          likeClicked,
-          dislikeClicked,
-        } = this.state
+        const {videoDetails, likeClicked, dislikeClicked} = this.state
         const {
           id,
           thumbnailUrl,

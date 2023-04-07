@@ -51,6 +51,54 @@ export const NavbarOption = styled.li`
   width: 100%;
   margin-bottom: 10px;
 `
+
+export const NavbarOptionText = styled.p`
+  margin-left: 20px;
+  text-align: left;
+  width: 100px;
+`
+
+export const HomeOptionText = styled(NavbarOptionText)`
+  color: ${props => {
+    const {darkTheme, selectedTab} = props
+    const themeColor = darkTheme ? '#f9f9f9' : '#181818'
+    if (selectedTab === 'HOME') {
+      return '#ff0000'
+    }
+    return themeColor
+  }};
+`
+export const GamingOptionText = styled(NavbarOptionText)`
+  color: ${props => {
+    const {darkTheme, selectedTab} = props
+    const themeColor = darkTheme ? '#f9f9f9' : '#181818'
+    if (selectedTab === 'GAMING') {
+      return '#ff0000'
+    }
+    return themeColor
+  }};
+`
+export const PlaylistOptionText = styled(NavbarOptionText)`
+  color: ${props => {
+    const {darkTheme, selectedTab} = props
+    const themeColor = darkTheme ? '#f9f9f9' : '#181818'
+    if (selectedTab === 'PLAYLIST') {
+      return '#ff0000'
+    }
+    return themeColor
+  }};
+`
+export const TrendingOptionText = styled(NavbarOptionText)`
+  color: ${props => {
+    const {darkTheme, selectedTab} = props
+    const themeColor = darkTheme ? '#f9f9f9' : '#181818'
+    if (selectedTab === 'TRENDING') {
+      return '#ff0000'
+    }
+    return themeColor
+  }};
+`
+
 export const HomeOption = styled(NavbarOption)`
   background-color: ${props => {
     const {darkTheme, selectedTab} = props
@@ -72,7 +120,7 @@ export const GamingOption = styled(NavbarOption)`
     }
     return null
   }};
-  font-weight: ${props => (props.selectedTab === 'HOME' ? '600' : '500')};
+  font-weight: ${props => (props.selectedTab === 'GAMING' ? '600' : '500')};
 `
 export const SavedVideosOption = styled(NavbarOption)`
   background-color: ${props => {
@@ -84,7 +132,7 @@ export const SavedVideosOption = styled(NavbarOption)`
     }
     return null
   }};
-  font-weight: ${props => (props.selectedTab === 'HOME' ? '600' : '500')};
+  font-weight: ${props => (props.selectedTab === 'PLAYLIST' ? '600' : '500')};
 `
 
 export const TrendingOption = styled(NavbarOption)`
@@ -97,5 +145,5 @@ export const TrendingOption = styled(NavbarOption)`
     }
     return null
   }};
-  font-weight: ${props => (props.selectedTab === 'HOME' ? '600' : '500')};
+  font-weight: ${props => (props.selectedTab === 'TRENDING' ? '600' : '500')};
 `

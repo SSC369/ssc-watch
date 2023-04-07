@@ -12,6 +12,7 @@ export const VideoItemDetailsContainer = styled.div`
 `
 export const VideoTitle = styled.p`
   font-size: 20px;
+  font-weight: 500;
   color: ${props => (props.darkTheme ? '#e2e8f0' : '#212121')};
   margin-bottom: 0;
 `

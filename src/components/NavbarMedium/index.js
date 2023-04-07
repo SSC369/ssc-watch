@@ -4,7 +4,7 @@ import {HiFire} from 'react-icons/hi'
 import {SiYoutubegaming} from 'react-icons/si'
 import {MdPlaylistAdd} from 'react-icons/md'
 import NxtWatchContext from '../../context/NxtWatchContext'
-import {ModalOptionsContainer, OptionText} from '../Header/styledComponents'
+import {ModalOptionsContainer} from '../Header/styledComponents'
 import {
   HomeNavbar,
   FooterIconsContainer,
@@ -13,11 +13,14 @@ import {
   FooterDescription,
   SocialMediaImage,
   NavButton,
-  NavbarOption,
   HomeOption,
   GamingOption,
   SavedVideosOption,
   TrendingOption,
+  HomeOptionText,
+  GamingOptionText,
+  PlaylistOptionText,
+  TrendingOptionText,
 } from './styledComponents'
 
 const NavbarMedium = () => (
@@ -40,7 +43,12 @@ const NavbarMedium = () => (
                     fontSize={30}
                     color={selectedTab === 'HOME' ? '#ff0000' : IconColor}
                   />
-                  <OptionText darkTheme={darkTheme}>Home</OptionText>
+                  <HomeOptionText
+                    selectedTab={selectedTab}
+                    darkTheme={darkTheme}
+                  >
+                    Home
+                  </HomeOptionText>
                 </HomeOption>
               </NavButton>
             </Link>
@@ -56,7 +64,12 @@ const NavbarMedium = () => (
                     color={selectedTab === 'TRENDING' ? '#ff0000' : IconColor}
                     fontSize={30}
                   />
-                  <OptionText darkTheme={darkTheme}>Trending</OptionText>
+                  <TrendingOptionText
+                    selectedTab={selectedTab}
+                    darkTheme={darkTheme}
+                  >
+                    Trending
+                  </TrendingOptionText>
                 </TrendingOption>
               </NavButton>
             </Link>
@@ -72,7 +85,12 @@ const NavbarMedium = () => (
                     color={selectedTab === 'GAMING' ? '#ff0000' : IconColor}
                     fontSize={30}
                   />
-                  <OptionText darkTheme={darkTheme}>Gaming</OptionText>
+                  <GamingOptionText
+                    selectedTab={selectedTab}
+                    darkTheme={darkTheme}
+                  >
+                    Gaming
+                  </GamingOptionText>
                 </GamingOption>
               </NavButton>
             </Link>
@@ -91,7 +109,12 @@ const NavbarMedium = () => (
                     color={selectedTab === 'PLAYLIST' ? '#ff0000' : IconColor}
                     fontSize={30}
                   />
-                  <OptionText darkTheme={darkTheme}>Saved Videos</OptionText>
+                  <PlaylistOptionText
+                    selectedTab={selectedTab}
+                    darkTheme={darkTheme}
+                  >
+                    Saved Videos
+                  </PlaylistOptionText>
                 </SavedVideosOption>
               </NavButton>
             </Link>

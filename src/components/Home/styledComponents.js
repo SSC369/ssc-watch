@@ -1,11 +1,5 @@
 import styled from 'styled-components'
 
-export const BgContainer = styled.div`
-  background-color: ${props => (props.darkTheme ? '#181818' : '#f9f9f9')};
-  display: flex;
-  flex-direction: column;
-`
-
 export const NoVideosViewContainer = styled.div`
   padding-top: 60px;
   padding-bottom: 60px;
