@@ -40,7 +40,7 @@ const SavedVideosRoute = () => (
             No saved videos found
           </NotSavedVideosTitle>
           <NotSavedVideosDescription darkTheme={darkTheme}>
-            You can save your videos while watching them
+            Save your videos by clicking a button
           </NotSavedVideosDescription>
         </NotSavedVideosViewContainer>
       )
